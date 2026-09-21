@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at center,
+            #272000 0%,
+            #080700 30%,
+            #000 75%
+        );
+
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+
+/* ================================
+   CANVAS
+================================ */
+
+#galaxy {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 0;
+}
+
+
+/* ================================
+   PANTALLA INICIAL
+================================ */
+
+#inicio {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(90,70,0,.35),
+            rgba(0,0,0,.96)
+        );
+
+    z-index: 100;
+
+    transition: 1.5s;
+}
+
+.inicio-contenido {
+    padding: 30px;
+}
+
+.inicio-contenido h1 {
+    font-size: clamp(32px, 7vw, 65px);
+
+    color: #ffe96a;
+
+    text-shadow:
+        0 0 10px #ffe96a,
+        0 0 30px #ffca28;
+}
+
+.inicio-contenido p {
+    margin-top: 20px;
+
+    color: #eee;
+
+    font-size: 18px;
+}
+
+.flor {
+    font-size: 80px;
+
+    margin-bottom: 20px;
+
+    animation: respirar 2s infinite alternate;
+}
+
+#entrar {
+    margin-top: 35px;
+
+    padding: 15px 35px;
+
+    border: 1px solid #ffe96a;
+    border-radius: 40px;
+
+    background: rgba(255,233,106,.1);
+
+    color: #ffe96a;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(255,233,106,.4);
+
+    transition: .3s;
+}
+
+#entrar:hover {
+    background: #ffe96a;
+    color: black;
+
+    box-shadow:
+        0 0 35px #ffe96a;
+}
+
+
+/* ================================
+   UNIVERSO
+================================ */
+
+#universo {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 5;
+
+    opacity: 0;
+
+    transition: opacity 3s;
+}
+
+
+/* ================================
+   MENSAJES
+================================ */
+
+.mensaje {
+    position: absolute;
+
+    font-family: Georgia, serif;
+
+    color: #fff8bf;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #ffe55c;
+
+    opacity: 0;
+
+    animation:
+        aparecer 3s forwards,
+        flotar 4s ease-in-out infinite alternate;
+}
+
+.mensaje1 {
+    top: 24%;
+    left: 15%;
+
+    animation-delay: 1s;
+}
+
+.mensaje2 {
+    top: 38%;
+    right: 10%;
+
+    animation-delay: 2s;
+}
+
+.mensaje3 {
+    bottom: 27%;
+    left: 46%;
+
+    font-size: 25px;
+
+    animation-delay: 3s;
+}
+
+.mensaje4 {
+    top: 55%;
+    left: 8%;
+
+    animation-delay: 4s;
+}
+
+.mensaje5 {
+    bottom: 12%;
+    right: 14%;
+
+    animation-delay: 5s;
+}
+
+
+/* ================================
+   GIRASOLES
+================================ */
+
+.girasol {
+    position: absolute;
+
+    font-size: clamp(35px, 5vw, 70px);
+
+    filter:
+        drop-shadow(0 0 12px rgba(255,215,0,.7));
+
+    animation: girasolFlotando 5s ease-in-out infinite alternate;
+}
+
+.flor1 {
+    left: 5%;
+    top: 30%;
+}
+
+.flor2 {
+    right: 10%;
+    top: 30%;
+}
+
+.flor3 {
+    left: 22%;
+    bottom: 18%;
+}
+
+.flor4 {
+    right: 20%;
+    bottom: 12%;
+}
+
+.flor5 {
+    left: 48%;
+    top: 48%;
+}
+
+
+/* ================================
+   CORAZÓN
+================================ */
+
+#corazon {
+    position: absolute;
+
+    left: 50%;
+    top: 25%;
+
+    width: 160px;
+    height: 145px;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    filter:
+        drop-shadow(0 0 15px #ffe96a);
+
+    animation: latido 1.7s infinite;
+}
+
+#corazon::before {
+    content: "♡";
+
+    position: absolute;
+
+    font-size: 180px;
+
+    color: #ffe55c;
+
+    text-shadow:
+        0 0 10px #ffe55c,
+        0 0 30px #ffe55c,
+        0 0 60px #dca900;
+}
+
+#corazon span {
+    position: relative;
+
+    z-index: 2;
+
+    font-family: Georgia, serif;
+    font-style: italic;
+
+    color: #fff6ae;
+
+    font-size: 20px;
+}
+
+
+/* ================================
+   LUZ CENTRAL
+================================ */
+
+.centro {
+    position: absolute;
+
+    left: 50%;
+    top: 57%;
+
+    transform: translate(-50%, -50%);
+}
+
+.luz {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 20px white,
+        0 0 50px #ffe55c,
+        0 0 100px #ffe55c,
+        0 0 180px #ffca28;
+
+    animation: luz 2s infinite alternate;
+}
+
+
+/* ================================
+   ANIMACIONES
+================================ */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes flotar {
+
+    from {
+        transform: translateY(-5px);
+    }
+
+    to {
+        transform: translateY(8px);
+    }
+
+}
+
+@keyframes girasolFlotando {
+
+    from {
+        transform:
+            translateY(-10px)
+            rotate(-5deg);
+    }
+
+    to {
+        transform:
+            translateY(12px)
+            rotate(5deg);
+    }
+
+}
+
+@keyframes latido {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+
+}
+
+@keyframes luz {
+
+    from {
+        transform: scale(.8);
+    }
+
+    to {
+        transform: scale(1.3);
+    }
+
+}
+
+@keyframes respirar {
+
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+
+}
+
+
+/* ================================
+   CELULAR
+================================ */
+
+@media(max-width: 600px) {
+
+    .mensaje {
+        font-size: 14px;
+    }
+
+    #corazon {
+        top: 22%;
+    }
+
+    .flor5 {
+        display: none;
+    }
+
+}
